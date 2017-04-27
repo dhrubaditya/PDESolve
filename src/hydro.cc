@@ -22,8 +22,13 @@ void dOdt1(double Psi[], const vec3 kk, const int ijk, const int ldiag){
 }
 /*-----------------------------*/
 void dOdt_IFFT(double Psi[]){
-  IFFT3(Psi,iooh,ioo);
-  IFFT3(Psi,iuuh,iuu);
+  IFFT3(Psi,ioohx,ioox);
+  IFFT3(Psi,ioohy,iooy);
+  IFFT3(Psi,ioohz,iooz);
+  //-------------------//
+  IFFT3(Psi,iuuhx,iuux);
+  IFFT3(Psi,iuuhy,iuuy);
+  IFFT3(Psi,iuuhz,iuuz);
 }
 /*-----------------------------*/
 double dOdt2(double Psi[], double DPsi[], double time, const vec3 kk, const int ijk, const int ldiag){
@@ -43,7 +48,9 @@ double dOdt2(double Psi[], double DPsi[], double time, const vec3 kk, const int 
 }
 /*-------------------------------------*/
 void dOdt_FFT(double DPsi[]){
-  FFT3(DPsi,idodt,idodth);
+  FFT3(DPsi,idodtx,idodthx);
+  FFT3(DPsi,idodty,idodthy);
+  FFT3(DPsi,idodtz,idodthz);
 }
 /* ------------------------------------*/
 void dOdt_final(double DPsi[], const vec3 kk, const int ijk){

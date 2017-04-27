@@ -9,6 +9,8 @@ using namespace std;
 int NN;
 int lhydro;
 int ioo=0,iuu=0,idodt=0;
+int iuux=0,iuuy=0,iuuz=0;
+int ioox=0,iooy=0,iooz=0;
 int iooh=0,iuuh=0,idodth=0;
 int lmagnetic;
 int iaa=0;
