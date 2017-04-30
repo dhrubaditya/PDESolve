@@ -6,16 +6,40 @@ using namespace std;
 #define setDT 0.001
 double get_dt(double dt_hydro);
 /*-----------------------------*/
+void register(){
+  lhydro=IsHydro();
+  /* -- Register all the variables but not the auxiliaries */
+  register_var();
+  /* Now all the dynamical variables are allocated. */
+  /* do a consistency check here. */
+  register_aux();
+}
+void register_var(){
+  if (lhydro==1){
+    register_hydro_var(&nvar, &psi_index, &dpsi_index);
+  }
+}
+/*-----------------------------*/
+void register_aux(){
+  if (lhydro==1){
+    register_hydro_aux(&nvar, &psi_index, &dpsi_index);
+  }
+}
+/*-----------------------------*/
+void allocate_pencils(){
+  if (lhydro==1){allocate_hydro_pencils();}
+}
+/*-----------------------------*/
 double GetDPsi(double Psi[], double DPsi[], double time, const int ldiag, double *pdt){
   double dt_hydro,dt;
+  vec3 kk[N3];
   /* First step of evolution */
-  for(int ijk=0;ijk<NN;ijk++){
-    vec3 kk = get_kk(ijk);
-    if (lhydro == 1){dOdt1(Psi, kk, ijk, ldiag);}
+  for(int ij=0;ij<Nsqr;ij++){
+    get_kk(kk,ij);
+    if (lhydro == 1){dOdt1(Psi, ij, ldiag);}
   }
   /* Inverse Fourier Transforms */
-  if (lhydro == 1){
-    dOdt_IFFT(Psi);}
+  if (lhydro == 1){dOdt_IFFT(Psi);}
   /* Second step of evolution */
   for(int ijk=0;ijk<NN;ijk++){
     vec3 kk = get_kk(ijk);

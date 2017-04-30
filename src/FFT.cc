@@ -2,7 +2,14 @@
 #include "FFT.h"
 using namespace std;
 /*-----------------------------*/
-fftw_plan plan_r2c_FFT3d(double Psi[], const int iqq, const int iqqh, const int N1, const int N2, const int N3){
+  fftw_plan plan_c2r_FFT3d_out_of_place(double Psi[], const int iqqh, double DPsi[], const int iqq, const int N1, const int N2, const int N3){
+  fftw_complex* in= (fftw_complex *)&Psi[iqqh];
+  real* out=(real*)&DPsi[iqq];
+  fftw_plan plan= fftw_plan_dft_r2c_3d(N1, N2, N3, in, out, FFTW_ESTIMATE,FFTW_PRESERVE_INPUT);
+  return plan;
+}
+/*----------------------*/
+  fftw_plan plan_r2c_FFT3d(double Psi[], const int iqq, const int iqqh, const int N1, const int N2, const int N3){
   double* in= (double *)&Psi[iqq];
   fftw_complex* out=(fftw_complex*)&Psi[iqqh];
   fftw_plan plan_r2c_3d= fftw_plan_dft_r2c_3d(N1, N2, N3, in, out, FFTW_ESTIMATE);
@@ -16,12 +23,14 @@ fftw_plan plan_c2r_FFT3d(double Psi[], const int iqqh, const int iqq, const int 
   return plan_c2r_3d;
 }
 /*----------------------*/
-void  IFFT3(double Psi[], const int iqqh, const int iqq){
-
-
+void  IFFT3(fftw_plan plan_c2r_FFT3d){
+  fftw_execute(plan_c2r_FFT3d);
 }
-void  FFT3(double Psi[], const int iqq, const int iqqh){
+/*----------------------*/
+void  FFT3(fftw_plan plan_r2c_FFT3d){
+  fftw_execute(plan_r2c_FFT3d);
 }
+/*----------------------*/
 fftw_plan plan_FFT1d(double Psi[], const int iqq, const int iqqh, const int N1){
   double* in = (double*)&Psi[iqq];
   fftw_complex* out = (fftw_complex*)&Psi[iqqh];

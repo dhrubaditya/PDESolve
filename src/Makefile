@@ -6,6 +6,6 @@ default:
 	$(cc) test.c $(include_fft)
 	g++ test.o FFT.o -lfftw3 -lm -L/Users/dhruba/Lib/lib
 code:
-	$(cc) hydro.cc
+	$(cc) hydro.cc  $(include_fft)
 	$(cc) pde.cc
 	$(cc) evolve.cc

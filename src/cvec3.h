@@ -20,7 +20,7 @@ public:
   cvec3 operator*(complex);
   cvec3 operator/(double);
 };
-
+//
 cvec3::cvec3(){
   x = complex(0.0,0.0);
   y = complex(0.0,0.0);
@@ -98,6 +98,7 @@ cvec3 conjg(cvec3 a){
   temp.x=conjg(a.x);
   temp.y=conjg(a.y);
   temp.z=conjg(a.z);
+  return(temp);
 }
 /*---------------------------------------*/
 

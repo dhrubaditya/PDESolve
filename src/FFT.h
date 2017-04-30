@@ -6,10 +6,11 @@
 #include<fftw3.h>
 using namespace std;
 /*-------------------------*/
+fftw_plan plan_c2r_FFT3d_out_of_place(double Psi[], const int iqqh, double DPsi[], const int iqq, const int N1, const int N2, const int N3);
 fftw_plan plan_r2c_FFT3d(double Psi[], const int iqq, const int iqqh, const int N1, const int N2, const int N3);
 fftw_plan plan_c2r_FFT3d(double Psi[], const int iqqh, const int iqq, const int N1, const int N2, const int N3);
-void  IFFT3(double Psi[], const int iqqh, const int iqq);
-void  FFT3(double Psi[], const int iqq, const int iqqh);
+void  IFFT3(fftw_plan plan_c2r_FFT3d);
+void  FFT3(fftw_plan plan_c2r_FFT3d);
 fftw_plan plan_FFT1d(double Psi[], const int iqq, const int iqqh, const int N1);
 fftw_plan plan_IFFT1d(double Psi[], const int iqqh, const int iqq, const int N1);
 void FFT1d(fftw_plan p1d_r2c);
