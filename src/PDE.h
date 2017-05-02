@@ -23,6 +23,7 @@ int lpscalar;
 int ipscalar=0;
 int lparticles;
 int lIBM;
+void allocate_pencils();
 double GetDPsi(double Psi[], double DPsi[], double time, const int ldiag, double *pdt);
 void Psi2cvec(cvec3 qqh[], double Psi[], const int ij, const int iqqh);
 void cvec2Psi(double Psi[], const int ij, const int iqqh, cvec3 qqh[]);

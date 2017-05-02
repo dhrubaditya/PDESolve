@@ -10,6 +10,6 @@ int N1;
 int N2;
 int N3;
 long int Nsqr=N1*N2; 
-long int Ncube=N1*N2*N3;
+long int Ncube=N1*N2*(N3+2);
 void get_kk(vec3 kk[], const int ij);
 #endif /* !FILE_grid_SEEN */

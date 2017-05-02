@@ -16,9 +16,9 @@ void register_hydro_var(int *nvar, int *psi_index, int *dpsi_index);
 void register_hydro_aux(int *naux, int *psi_index, int *dpsi_index);
 void initialize_FFT_hydro(double Psi[], double DPsi[]);
 void allocate_hydro_pencils();
-void dOdt1(double Psi[], const int ijk, const int ldiag);
-double dOdt2(double Psi[], double DPsi[], double time, const vec3 kk, const int ijk, const int ldiag);
-void dOdt_final(double DPsi[], const int ijk);
+void dOdt1(double Psi[], const int ij, const int ldiag);
+double dOdt2(double Psi[], double DPsi[], double time, const int ij, const int ldiag);
+void dOdt_final(double DPsi[], const int ij);
 void dOdt_IFFT(double Psi[]);
 void dOdt_FFT(double DPsi[]);
 /*-------------------------*/

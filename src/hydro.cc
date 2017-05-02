@@ -40,10 +40,10 @@ void register_hydro_aux(int *naux, int *psi_index, int *dpsi_index){
 }
 /*-----------------------------*/
 void allocate_hydro_pencils(){
-  cvec3 *uuh = (cvec3 *)malloc(N3*sizeof(cvec3));
-  cvec3 *ooh = (cvec3 *)malloc(N3*sizeof(cvec3));
-  cvec3 *dodth = (cvec3 *)malloc(N3*sizeof(cvec3));
-  vec3 *kk = (vec3 *)malloc(N3*sizeof(vec3));
+  cvec3 *uuh = (cvec3 *)malloc((1+N3/2)*sizeof(cvec3));
+  cvec3 *ooh = (cvec3 *)malloc((1+N3/2)*sizeof(cvec3));
+  cvec3 *dodth = (cvec3 *)malloc((1+N3/2)*sizeof(cvec3));
+  vec3 *kk = (vec3 *)malloc((1+N3/2)*sizeof(vec3));
   vec3 *uu = (vec3 *)malloc(N3*sizeof(vec3));
   vec3 *oo = (vec3 *)malloc(N3*sizeof(vec3));
   vec3 *dodt = (vec3 *)malloc(N3*sizeof(vec3));

@@ -65,8 +65,8 @@ void RungeKutta2(double time, unsigned long int NN, double Psi[], double DPsi[],
     }
   }
 }
-/* ------------------------ 
- void rnkt2(double yy[], double tt,double deltat, int lindex){
+/* ------------------------ */
+/* void rnkt2(double yy[], double tt,double deltat, int lindex){
   double temp[pdim],k1[pdim];
   eval_rhs(k1,tt,yy,lindex);
   for(int idim=0;idim<pdim;idim++){
@@ -76,7 +76,7 @@ void RungeKutta2(double time, unsigned long int NN, double Psi[], double DPsi[],
   for(int idim=0;idim<pdim;idim++){
     yy[lindex+idim]=yy[lindex+idim]+deltat*k1[idim];
   }
-}
+  }*/
 /********************************
 __device__ void rnkt4(double yy[], double tt,double deltat, int lindex){
   double  temp[pdim],k1[pdim],k2[pdim],k3[pdim],k4[pdim];
@@ -96,5 +96,5 @@ __device__ void rnkt4(double yy[], double tt,double deltat, int lindex){
   for(int idim=0;idim<pdim;idim++){
     yy[lindex+idim]=yy[lindex+idim]+deltat*(  (k1[idim]/6.) + (k2[idim]/3.) + (k3[idim]/3.) + (k4[idim]/6.) );
   }
-}
+}*/
 /*********************************/
